@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Prod Calculator</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background-color: #f4f4f4;
+      text-align: center;
+    }
+    table {
+      width: 70%;
+      max-width: 700px;
+      margin: 0 auto;
+      border-collapse: collapse;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      background-color: #fff;
+    }
+    th, td {
+      border: 1px solid #ddd;
+      padding: 12px;
+      text-align: center;
+      vertical-align: middle;
+    }
+    th {
+      background-color: #4CAF50;
+      color: white;
+      font-weight: bold;
+    }
+    tr:nth-child(even) {
+      background-color: #f9f9f9;
+    }
+    tr:hover {
+      background-color: #e0f7fa;
+    }
+    button {
+      padding: 10px 20px;
+      font-size: 1rem;
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      border-radius: 4px;
+      cursor: pointer;
+      transition: background-color 0.3s ease;
+      margin-top: 3rem;
+    }
+    button:hover {
+      background-color: #45a049;
+    }
+    .input-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+    input[type="text"] {
+      width: 60px;
+      text-align:center;
+      margin-bottom: 4px;
+    }
+    .result {
+      font-size: 0.9rem;
+      color: #333;
+      min-width: 70px;
+      font-weight: bold;
+      margin-top: 4px;
+    }
+    #totalContainer {
+      margin-top: 2rem;
+      font-size: 1.1rem;
+    }
+    #totalResult {
+      width: 120px;
+      font-weight: bold;
+      text-align: center;
+      padding: 6px;
+      font-size: 1rem;
+    }
+     #buttonsContainer {
+      margin-top: 2rem;
+    }
+  </style>
+</head>
+<body>
+
+  <h2>Prod Calculator</h2>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Region</th>
+        <th>Contracts</th>
+        <th>Amendments</th>
+        <th>Offers</th>
+        <th>WOO</th>
+        <th>Inventory</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>GCC</td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="4.095" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.9" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="1.605" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.98" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.13" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>IO & MENA</td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="3.66" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.8" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="1.62" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.66" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.22" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Americas</td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="2.655" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.6" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="1.245" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.43" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.18" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>APAC</td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="3.095" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.59" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="1.47" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.54" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.15" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Spain & Portugal</td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="3.675" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.49" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.715" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.66" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.11" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>EMNA</td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="2.915" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.82" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.705" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.48" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.11" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+      </tr>
+      <tr>
+        <td>Western Europe</td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="3.595" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.81" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.315" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.63" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+        <td>
+          <div class="input-container">
+            <input type="text" data-percent="0.12" placeholder="Qty" />
+            <span class="result"></span>
+          </div>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+
+   <div id="buttonsContainer">
+    <button type="button" id="checkBtn">Check</button>
+    <button type="button" id="resetBtn" style="background-color:#f44336;">Reset</button>
+  </div>
+
+  <div id="totalContainer">
+    <label for="totalResult">Average Hrs:</label>
+    <input type="text" id="totalResult" readonly placeholder="0.000%" />
+  </div>
+
+  <!-- Conditional Result -->
+<div id="conditionalContainer" style="margin-top: 1rem;">
+  <label for="conditionalResultInput">Average Prod:</label>
+  <input type="text" id="conditionalResultInput" readonly placeholder="" style="width: 120px; font-weight: bold; text-align: center; font-size: 1rem; color: #007BFF;" />
+</div>
+  
+  <script>
+    function formatPercentage(num) {
+      return parseFloat(num).toFixed(2);
+    }
+
+    // Calculate and update result for a single input, return decimal result
+    function calculateResult(input) {
+      const userValue = Number(input.value);
+      const percent = Number(input.getAttribute('data-percent'));
+      const resultSpan = input.nextElementSibling;
+
+      if (!isNaN(userValue) && userValue !== 0 && !isNaN(percent)) {
+        const resultDecimal = userValue * (percent / 100);
+        resultSpan.textContent = formatPercentage(resultDecimal * 100);
+        return resultDecimal;
+      } else {
+        resultSpan.textContent = '';
+        return 0;
+      }
+    }
+
+    // Live update on input event
+    document.querySelectorAll('table tbody input[type="text"]').forEach(input => {
+      input.addEventListener('input', () => {
+        calculateResult(input);
+      });
+    });
+
+    // Sum all results on button click and show total
+    document.getElementById('checkBtn').addEventListener('click', () => {
+      const inputs = document.querySelectorAll('table tbody input[type="text"]');
+      let total = 0;
+
+      inputs.forEach(input => {
+        total += calculateResult(input);
+      });
+
+      document.getElementById('totalResult').value = formatPercentage(total * 100);
+    });
+
+    // Reset all inputs, results, and total
+    document.getElementById('resetBtn').addEventListener('click', () => {
+      const inputs = document.querySelectorAll('table tbody input[type="text"]');
+      inputs.forEach(input => {
+        input.value = '';
+        const resultSpan = input.nextElementSibling;
+        resultSpan.textContent = '';
+      });
+      document.getElementById('totalResult').value = '';
+      document.getElementById('conditionalResultInput').value = '';
+
+    });
+    
+    
+document.getElementById('checkBtn').addEventListener('click', () => {
+  const inputs = document.querySelectorAll('table tbody input[type="text"]');
+  let total = 0;
+  let anyFilled = false;
+
+  // Check if at least one input has a value
+  inputs.forEach(input => {
+    if (input.value.trim() !== '') {
+      anyFilled = true;
+    }
+  });
+
+  if (!anyFilled) {
+    alert('Please enter at least one value before checking.');
+    return; // Stop further execution
+  }
+
+  // Calculate total only if at least one input is filled
+  inputs.forEach(input => {
+    total += calculateResult(input);
+  });
+
+  const totalPercent = total * 100;
+  const totalResultInput = document.getElementById('totalResult');
+  totalResultInput.value = formatPercentage(totalPercent);
+
+  const conditionalInput = document.getElementById('conditionalResultInput');
+  if (totalPercent >= 1 && totalPercent <= 1.99) {
+    conditionalInput.value = '10%';
+  } 
+       else if (totalPercent >= 2 && totalPercent <= 2.99) {
+    conditionalInput.value = '25%';
+  } 
+        else if (totalPercent >= 3 && totalPercent <= 3.99) {
+    conditionalInput.value = '35%';
+  } 
+       else if (totalPercent >= 4 && totalPercent <= 4.99) {
+    conditionalInput.value = '45%';
+  } 
+        else if (totalPercent >= 5 && totalPercent <= 5.99) {
+    conditionalInput.value = '60%';
+  } 
+       else if (totalPercent >= 6 && totalPercent <= 6.49) {
+    conditionalInput.value = '80%';
+  }
+       else if (totalPercent >= 6.50 && totalPercent <= 6.99) {
+    conditionalInput.value = '90%';
+  }
+       else if (totalPercent >= 7 && totalPercent <= 7.59) {
+    conditionalInput.value = '100%';
+  }
+        else if (totalPercent >= 7.60 && totalPercent <= 7.99) {
+    conditionalInput.value = '110%';
+  }
+        else if (totalPercent >= 8 && totalPercent <= 8.99) {
+    conditionalInput.value = '120%';
+  }
+       else if (totalPercent >= 9 && totalPercent <= 15.99) {
+    conditionalInput.value = '130%';
+  }
+        else if (totalPercent >= 16 && totalPercent <= 24) {
+    conditionalInput.value = 'Over Prod';
+  }
+       else {
+    conditionalInput.value = 'Low Prod';
+  }
+
+});
+  </script>
+</body>
+</html>
