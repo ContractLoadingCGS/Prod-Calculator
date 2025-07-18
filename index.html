@@ -334,7 +334,8 @@
   </table>
 
    <div id="buttonsContainer">
-    <button type="button" id="checkBtn">Check</button>
+    <button type="button" id="checkBtn">Full Day</button>
+    <button type="button" id="checkBtn2">Half Day</button>
     <button type="button" id="resetBtn" style="background-color:#f44336;">Reset</button>
   </div>
 
@@ -344,133 +345,112 @@
   </div>
 
   <!-- Conditional Result -->
-<div id="conditionalContainer" style="margin-top: 1rem;">
-  <label for="conditionalResultInput">Average Prod:</label>
-  <input type="text" id="conditionalResultInput" readonly placeholder="" style="width: 120px; font-weight: bold; text-align: center; font-size: 1rem; color: #007BFF;" />
-</div>
+  <div id="conditionalContainer" style="margin-top: 1rem;">
+    <label for="conditionalResultInput">Average Prod:</label>
+    <input type="text" id="conditionalResultInput" readonly placeholder="" style="width: 120px; font-weight: bold; text-align: center; font-size: 1rem; color: #007BFF;" />
+  </div>
   
   <script>
-    function formatPercentage(num) {
-      return parseFloat(num).toFixed(2);
+  function formatNumber(num) {
+    return parseFloat(num).toFixed(2);
+  }
+
+  function formatPercentage(num) {
+    return parseFloat(num).toFixed(2) + '%';
+  }
+
+  function calculateResult(input) {
+    const userValue = Number(input.value);
+    const percent = Number(input.getAttribute('data-percent'));
+    const resultSpan = input.nextElementSibling;
+
+    if (!isNaN(userValue) && userValue !== 0 && !isNaN(percent)) {
+      const resultDecimal = userValue * (percent / 100);
+      resultSpan.textContent = formatNumber(resultDecimal * 100);
+      return resultDecimal;
+    } else {
+      resultSpan.textContent = '';
+      return 0;
     }
+  }
 
-    // Calculate and update result for a single input, return decimal result
-    function calculateResult(input) {
-      const userValue = Number(input.value);
-      const percent = Number(input.getAttribute('data-percent'));
-      const resultSpan = input.nextElementSibling;
+  document.querySelectorAll('table tbody input[type="text"]').forEach(input => {
+    input.addEventListener('input', () => {
+      calculateResult(input);
+    });
+  });
 
-      if (!isNaN(userValue) && userValue !== 0 && !isNaN(percent)) {
-        const resultDecimal = userValue * (percent / 100);
-        resultSpan.textContent = formatPercentage(resultDecimal * 100);
-        return resultDecimal;
-      } else {
-        resultSpan.textContent = '';
-        return 0;
+  // Full Day button click handler
+  document.getElementById('checkBtn').addEventListener('click', () => {
+    const inputs = document.querySelectorAll('table tbody input[type="text"]');
+    let total = 0;
+    let anyFilled = false;
+
+    inputs.forEach(input => {
+      if (input.value.trim() !== '') {
+        anyFilled = true;
       }
+    });
+    if (!anyFilled) {
+      alert('Please enter at least one value before checking.');
+      return;
     }
 
-    // Live update on input event
-    document.querySelectorAll('table tbody input[type="text"]').forEach(input => {
-      input.addEventListener('input', () => {
-        calculateResult(input);
-      });
+    inputs.forEach(input => {
+      total += calculateResult(input);
     });
 
-    // Sum all results on button click and show total
-    document.getElementById('checkBtn').addEventListener('click', () => {
-      const inputs = document.querySelectorAll('table tbody input[type="text"]');
-      let total = 0;
+    const totalPercent = total * 100;  // e.g. 8.00
+    document.getElementById('totalResult').value = formatNumber(totalPercent);
 
-      inputs.forEach(input => {
-        total += calculateResult(input);
-      });
+    const conditionalInput = document.getElementById('conditionalResultInput');
+    const dividedDecimal = totalPercent / 7.5;
+    const dividedPercentage = dividedDecimal * 100;
+    conditionalInput.value = formatPercentage(dividedPercentage);
+  });
 
-      document.getElementById('totalResult').value = formatPercentage(total * 100);
+  // Half Day button click handler (divide by 4)
+  document.getElementById('checkBtn2').addEventListener('click', () => {
+    const inputs = document.querySelectorAll('table tbody input[type="text"]');
+    let total = 0;
+    let anyFilled = false;
+
+    inputs.forEach(input => {
+      if (input.value.trim() !== '') {
+        anyFilled = true;
+      }
     });
-
-    // Reset all inputs, results, and total
-    document.getElementById('resetBtn').addEventListener('click', () => {
-      const inputs = document.querySelectorAll('table tbody input[type="text"]');
-      inputs.forEach(input => {
-        input.value = '';
-        const resultSpan = input.nextElementSibling;
-        resultSpan.textContent = '';
-      });
-      document.getElementById('totalResult').value = '';
-      document.getElementById('conditionalResultInput').value = '';
-
-    });
-    
-    
-document.getElementById('checkBtn').addEventListener('click', () => {
-  const inputs = document.querySelectorAll('table tbody input[type="text"]');
-  let total = 0;
-  let anyFilled = false;
-
-  // Check if at least one input has a value
-  inputs.forEach(input => {
-    if (input.value.trim() !== '') {
-      anyFilled = true;
+    if (!anyFilled) {
+      alert('Please enter at least one value before checking.');
+      return;
     }
+
+    inputs.forEach(input => {
+      total += calculateResult(input);
+    });
+
+    const totalPercent = total * 100;  // e.g. 8.00
+    document.getElementById('totalResult').value = formatNumber(totalPercent);
+
+    const conditionalInput = document.getElementById('conditionalResultInput');
+    const dividedDecimal = totalPercent / 4;
+    const dividedPercentage = dividedDecimal * 100;
+    conditionalInput.value = formatPercentage(dividedPercentage);
   });
 
-  if (!anyFilled) {
-    alert('Please enter at least one value before checking.');
-    return; // Stop further execution
-  }
-
-  // Calculate total only if at least one input is filled
-  inputs.forEach(input => {
-    total += calculateResult(input);
+  // Reset button click handler
+  document.getElementById('resetBtn').addEventListener('click', () => {
+    const inputs = document.querySelectorAll('table tbody input[type="text"]');
+    inputs.forEach(input => {
+      input.value = '';
+      const resultSpan = input.nextElementSibling;
+      resultSpan.textContent = '';
+    });
+    document.getElementById('totalResult').value = '';
+    document.getElementById('conditionalResultInput').value = '';
   });
+</script>
 
-  const totalPercent = total * 100;
-  const totalResultInput = document.getElementById('totalResult');
-  totalResultInput.value = formatPercentage(totalPercent);
 
-  const conditionalInput = document.getElementById('conditionalResultInput');
-  if (totalPercent >= 1 && totalPercent <= 1.99) {
-    conditionalInput.value = '10%';
-  } 
-       else if (totalPercent >= 2 && totalPercent <= 2.99) {
-    conditionalInput.value = '25%';
-  } 
-        else if (totalPercent >= 3 && totalPercent <= 3.99) {
-    conditionalInput.value = '35%';
-  } 
-       else if (totalPercent >= 4 && totalPercent <= 4.99) {
-    conditionalInput.value = '45%';
-  } 
-        else if (totalPercent >= 5 && totalPercent <= 5.99) {
-    conditionalInput.value = '60%';
-  } 
-       else if (totalPercent >= 6 && totalPercent <= 6.49) {
-    conditionalInput.value = '80%';
-  }
-       else if (totalPercent >= 6.50 && totalPercent <= 6.99) {
-    conditionalInput.value = '90%';
-  }
-       else if (totalPercent >= 7 && totalPercent <= 7.59) {
-    conditionalInput.value = '100%';
-  }
-        else if (totalPercent >= 7.60 && totalPercent <= 7.99) {
-    conditionalInput.value = '110%';
-  }
-        else if (totalPercent >= 8 && totalPercent <= 8.99) {
-    conditionalInput.value = '120%';
-  }
-       else if (totalPercent >= 9 && totalPercent <= 15.99) {
-    conditionalInput.value = '130%';
-  }
-        else if (totalPercent >= 16 && totalPercent <= 24) {
-    conditionalInput.value = 'Over Prod';
-  }
-       else {
-    conditionalInput.value = 'Low Prod';
-  }
-
-});
-  </script>
 </body>
 </html>
