@@ -654,7 +654,8 @@
     const body = encodeURIComponent(emailBody);
     const mailtoLink = `mailto:?subject=${subject}&body=${body}`;
     if (confirm('Do you want to send the email now?')) {
-      window.location.href = mailtoLink;
+     // window.location.href = mailtoLink;
+		window.open(mailtoLink, '_blank');
     }
   }
   function resetForm() {
