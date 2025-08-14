@@ -531,7 +531,7 @@
     </div>
     <div>
       <label for="conditionalResultInput">Running Productivity</label>
-      <input type="text" id="conditionalResultInput" readonly />
+      <input type="text" id="conditionalResultInput" readonly placeholder="0.000%"/>
     </div>
   </div>
 
@@ -646,7 +646,8 @@
         emailBody += ` - ${regionName}: ${filledValues.join(', ')}\n`;
       }
     });
-    emailBody += `\nAverage Productivity: ${conditionalInput.value}\n`;
+    emailBody += `\nAverage Productivity: ${conditionalInput.value}`;
+	emailBody += `\nProductive Hours: ${dayDivisor.value} hrs/mins\n`;
     const dateFormatted = formatDate(dateInput.value);
     const divisorVal = divisorInput.value;
     const subject = encodeURIComponent(`${dateFormatted} - EOD - ${fnameInput.value.trim()}`);
