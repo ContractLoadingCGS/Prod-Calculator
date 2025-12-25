@@ -3,6 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="prod-icon.png"> 
   <title>CGS Prod Calculator</title>
   <style>
     body {
@@ -235,10 +236,25 @@
         width: 45px !important;
       }
     }
+	#logo {
+		height: 150px;
+		
+		maargin-bottom: -120px;
+	}
+	.logo-top{
+		display:flex;
+		margin-bottom: -150px;
+	}
   </style>
+  
 </head>
-<body>
 
+<body>
+	<div class="logo-top">
+	<marquee behavior="scroll" direction="right">
+  <img id="logo" src="santa.png" alt="CGS Xmas Logo" />
+  </marquee>
+  </div>
   <h2>CGS Prod Calculator</h2>
 
   <!-- Top Inputs -->
