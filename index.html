@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
@@ -241,39 +241,47 @@
 		
 		maargin-bottom: -120px;
 	}
-	
-	#logo {
-		height: 300px;
-		
-		maargin-bottom: -120px;
-	}
 	.logo-top{
 		display:flex;
 		margin-bottom: -100px;
 	}
 	
-	
-	
 	.marquee {
-            position: absolute;
-            white-space: nowrap;
-            font-size: 32px;
-            font-weight: bold;
-            color: white;
-            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
-            animation: diagonal-scroll 10s linear infinite;
-        }
+    position: absolute;
+    white-space: nowrap;
+    font-size: 32px;
+    font-weight: bold;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+    animation: diagonal-scroll 10s linear infinite;
+}
 
-        @keyframes diagonal-scroll {
-            0% {
-                left: -300px;    /* Start off-screen left */
-                top: 100vh;      /* Start at bottom */
-            }
-            100% {
-                left: 100vw;     /* End at right edge */
-                top: -100px;     /* End off-screen top */
-            }
-        }
+/* Santa image bounce */
+#logo {
+   max-height: 250px;
+    animation: santa-bounce 1.1s ease-in-out infinite alternate;
+}
+
+@keyframes diagonal-scroll {
+    0% {
+        left: -300px;    /* Start off-screen left */
+        top: 100vh;      /* Start at bottom */
+    }
+    100% {
+        left: 100vw;     /* End at right edge */
+        top: -100px;     /* End off-screen top */
+    }
+}
+
+/* Up–down bounce */
+@keyframes santa-bounce {
+    0% {
+        transform: translateY(0);
+    }
+    100% {
+        transform: translateY(-50px);
+    }
+}
   </style>
   
 
