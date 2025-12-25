@@ -236,8 +236,14 @@
         width: 45px !important;
       }
     }
-	#logo {
+	#logo-santa {
 		height: 150px;
+		
+		maargin-bottom: -120px;
+	}
+	
+	#logo {
+		height: 300px;
 		
 		maargin-bottom: -120px;
 	}
@@ -245,16 +251,41 @@
 		display:flex;
 		margin-bottom: -100px;
 	}
+	
+	
+	
+	.marquee {
+            position: absolute;
+            white-space: nowrap;
+            font-size: 32px;
+            font-weight: bold;
+            color: white;
+            text-shadow: 2px 2px 8px rgba(0,0,0,0.7);
+            animation: diagonal-scroll 10s linear infinite;
+        }
+
+        @keyframes diagonal-scroll {
+            0% {
+                left: -300px;    /* Start off-screen left */
+                top: 100vh;      /* Start at bottom */
+            }
+            100% {
+                left: 100vw;     /* End at right edge */
+                top: -100px;     /* End off-screen top */
+            }
+        }
   </style>
   
+
 </head>
 
 <body>
-	<div class="logo-top">
-	<marquee behavior="scroll" direction="right" scrollamount="20">
-  <img id="logo" src="santa.png" alt="CGS Xmas Logo" />
-  </marquee>
-  </div>
+<div class="logo-top">
+<img id="logo-santa" src="xmaslogo.png" alt="CGS Xmas Logo" />
+</div>
+	<div class="marquee" scrollamount="20">
+          <img id="logo" src="santa.png" alt="CGS Xmas Logo" />
+    </div>
   <h2>CGS Prod Calculator</h2>
 
   <!-- Top Inputs -->
